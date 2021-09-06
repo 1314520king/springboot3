@@ -1,0 +1,59 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+      port: 35729
+    restart:
+      enabled: true
+      additional-paths: src/main/java  #监听这个路径下面的代码，如果发生变化就会重新前端springboot
+      exclude: WEB-INF/** #这个路径发生变化，不重启
+    #  mvc:
+#    view:
+#      prefix: /system/
+#      suffix: .jsp
+
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/db3?userSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource #表示使用的第三方数据源类型
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db3?userSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false #关闭缓存
+    mode: HTML
+    encoding: utf-8
+#    prefix: classpath:/views/ #放置模板的目录 ，templates
+#mybatis:
+#  mapper-locations: 'classpath*:mapper/**/*Mapper.xml'
+#  type-aliases-package: 'com.xuyou.entity'
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    root: info #springboot系统本身的日志输出级别
+    com.xuyou: info #我自己写的程序采用什么日志输出级别
+info:
+  app: '我的第一个springboot'
+  author: '作者'
+management:
+  endpoints:
+    web:
+      exposure:
+        #加载所有的默认节点
+        include: '*'
+  endpoint:
+    health:
+      show-details: never
+    #      show-details: always #显示健康度的全部细节，默认是不显示细节
+    shutdown:
+      enabled: false #关闭指定节点
+
